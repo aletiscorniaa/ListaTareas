@@ -3,6 +3,7 @@ import todoStore from '../store/todo.store';
 import { renderTodos } from './use-cases';
 
 const elementIDs = {
+    ClearCompleted: '.clear-completed',
     TodoList: '.todo-list',
     NewTodoInput: '#new-todo-input',
 }
@@ -25,6 +26,7 @@ export const App = (elementId) => {
     //Referencias HTML
     const newDescriptionInput = document.querySelector( elementIDs.NewTodoInput );
     const TodoListUL = document.querySelector( elementIDs.TodoList );
+    const ClearCompletedButton = document.querySelector( elementIDs.ClearCompleted );
 
 
     //Listeners
@@ -51,4 +53,9 @@ export const App = (elementId) => {
         displayTodos();
         
     });
+
+    ClearCompletedButton.addEventListener('click', () => {
+        todoStore.deleteCompleted();
+        displayTodos();
+    })
 }
